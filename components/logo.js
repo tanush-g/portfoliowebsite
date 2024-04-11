@@ -18,18 +18,18 @@ padding: 10px;
 `;
 
 const Logo = () => {
-    const footPrintImg = `/imaged/footprint${useColorModeValue('', '-dark')}.png`;
+    const footPrintImg = `/images/footprint${useColorModeValue('', '-dark')}.png`;
     return (
-        <Link href="/">
-            <a>
-                <LogoBox>
-                    <Image src={footPrintImg} alt="logo" width={20} height={20} />
-                    <Text color={useColorModeValue('gray.800', 'whiteAlpha.900')} fontFamily="M PLUS Rounded 1c" fontWeight="bold" ml={3}>
-                        Tanush Gautam
-                    </Text>
-                </LogoBox>
-            </a>
-        </Link>
-    )
+        (<Link href="/">
+
+            <LogoBox>
+                <Image src={footPrintImg} alt="logo" width={20} height={20} />
+                <Text color={useColorModeValue('gray.800', 'whiteAlpha.900')} fontFamily="M PLUS Rounded 1c" fontWeight="bold" ml={3}>
+                    Tanush Gautam
+                </Text>
+            </LogoBox>
+
+        </Link>)
+    );
 }
 export default Logo;

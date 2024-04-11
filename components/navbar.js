@@ -20,7 +20,7 @@ const LinkItem = ({ href, path, children }) => {
   const active = path === href
   const inactiveColor = useColorModeValue("gray.200", "whiteAlpha.900")
   return (
-    <NextLink href={href}>
+    <NextLink href={href} legacyBehavior>
       <Link
         p={2}
         bg={active ? "glassTeal" : undefined}
@@ -29,7 +29,7 @@ const LinkItem = ({ href, path, children }) => {
         {children}
       </Link>
     </NextLink>
-  )
+  );
 }
 
 const Navbar = props => {
