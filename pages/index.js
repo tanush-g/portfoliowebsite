@@ -2,9 +2,9 @@ import { Container, Box, Heading } from "@chakra-ui/react"
 
 const Page = () => {
   return (
-    <container>
+    <Container>
       <Box borderRadius="lg" bg="red" p={3} mb={6} align="center">
-        Hello, world!
+        Hello, world! I am a software developer based in India.
       </Box>
 
       <Box display={{ md: "flex" }} >
@@ -15,7 +15,7 @@ const Page = () => {
             <p>Software Engineer / Full Stack / Machine Learning / Cloud Computing</p>
         </Box>
       </Box>
-    </container>
+    </Container>
   )
 }
 

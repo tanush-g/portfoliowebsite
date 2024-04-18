@@ -6,7 +6,7 @@ import {
   Link,
   Stack,
   Heading,
-  flex,
+  Flex,
   Menu,
   MenuItem,
   MenuList,
@@ -29,7 +29,7 @@ const LinkItem = ({ href, path, children }) => {
         {children}
       </Link>
     </NextLink>
-  );
+  )
 }
 
 const Navbar = props => {
@@ -40,8 +40,8 @@ const Navbar = props => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue("#ffffff40", "#202023")}
-      style={{ backdropFilter: "saturate(150%) blur(10px)" }}
+      bg={useColorModeValue("#ffffff40", "#20202380")}
+      style={{ backdropFilter: "blur(10px)" }}
       zIndex={1}
       {...props}
     >
@@ -53,12 +53,12 @@ const Navbar = props => {
         align="center"
         justify="space-between"
       >
-        <flex align="center">
+        <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing="tighter">
             <Logo />
           </Heading>
-        </flex>
-        
+        </Flex>
+
         <Stack
           direction={{ base: "column", md: "row" }}
           display={{ base: "none", md: "flex" }}
@@ -74,6 +74,33 @@ const Navbar = props => {
             Blog
           </LinkItem>
         </Stack>
+
+        <Box flex={1} align="right">
+          <Box ml={2} display={{ base: "inline-block", md: "none" }}>
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<HamburgerIcon />}
+                variant="outline"
+              />
+              <MenuList>
+                <NextLink href="/" passHref>
+                  <MenuItem as={Link}>About</MenuItem>
+                </NextLink>
+                <NextLink href="/works" passHref>
+                  <MenuItem as={Link}>Works</MenuItem>
+                </NextLink>
+                <NextLink href="/posts" passHref>
+                  <MenuItem as={Link}>Posts</MenuItem>
+                </NextLink>
+                <NextLink href="https://github.com/tanush-g" passHref>
+                  <MenuItem as={Link}>View Source</MenuItem>
+                </NextLink>
+              </MenuList>
+            </Menu>
+          </Box>
+        </Box>
       </Container>
     </Box>
   )
