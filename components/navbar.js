@@ -85,16 +85,16 @@ const Navbar = props => {
                 variant="outline"
               />
               <MenuList>
-                <NextLink href="/" passHref>
+                <NextLink href="/" passHref legacyBehavior>
                   <MenuItem as={Link}>About</MenuItem>
                 </NextLink>
-                <NextLink href="/works" passHref>
+                <NextLink href="/works" passHref legacyBehavior>
                   <MenuItem as={Link}>Works</MenuItem>
                 </NextLink>
-                <NextLink href="/posts" passHref>
+                <NextLink href="/posts" passHref legacyBehavior>
                   <MenuItem as={Link}>Posts</MenuItem>
                 </NextLink>
-                <NextLink href="https://github.com/tanush-g" passHref>
+                <NextLink href="https://github.com/tanush-g" passHref legacyBehavior>
                   <MenuItem as={Link}>View Source</MenuItem>
                 </NextLink>
               </MenuList>
@@ -103,7 +103,7 @@ const Navbar = props => {
         </Box>
       </Container>
     </Box>
-  )
+  );
 }
 
 export default Navbar
