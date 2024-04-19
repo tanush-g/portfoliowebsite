@@ -54,7 +54,7 @@ const Navbar = props => {
         justify="space-between"
       >
         <Flex align="center" mr={5}>
-          <Heading as="h1" size="lg" letterSpacing="tighter">
+          <Heading as="h1" size="lg" letterSpacing={'tighter'}>
             <Logo />
           </Heading>
         </Flex>
@@ -70,8 +70,8 @@ const Navbar = props => {
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
-          <LinkItem href="/blog" path={path}>
-            Blog
+          <LinkItem href="/posts" path={path}>
+            Posts
           </LinkItem>
         </Stack>
 
