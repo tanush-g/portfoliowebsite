@@ -20,7 +20,7 @@ const LogoBox = styled.span`
 const Logo = () => {
   const footPrintImg = `/images/footprint${useColorModeValue("", "-dark")}.png`
   return (
-    <Link href="/">
+    <Link href="/" legacyBehavior>
         <LogoBox>
           <Image src={footPrintImg} alt="logo" width={20} height={20} />
           <Text
@@ -33,6 +33,6 @@ const Logo = () => {
           </Text>
         </LogoBox>
     </Link>
-  )
+  );
 }
 export default Logo
