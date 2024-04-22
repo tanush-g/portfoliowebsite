@@ -73,7 +73,7 @@ const Page = () => {
           </NextLink>
         </Paragraph>
         <Box align="center" my={4}>
-          <NextLink href="/works">
+          <NextLink href="/works" legacyBehavior>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
               My Portfolio
             </Button>
@@ -122,7 +122,7 @@ const Page = () => {
         </Paragraph>
       </Section>
     </Container>
-  )
+  );
 }
 
 export default Page
