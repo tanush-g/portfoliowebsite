@@ -71,9 +71,9 @@ const Navbar = props => {
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
-          <LinkItem href="/posts" path={path}>
+          {/* <LinkItem href="/posts" path={path}>
             Posts
-          </LinkItem>
+          </LinkItem> */}
         </Stack>
 
         <Box flex={1} align="right">
@@ -94,10 +94,10 @@ const Navbar = props => {
                 <NextLink href="/works" passHref legacyBehavior>
                   <MenuItem as={Link}>Works</MenuItem>
                 </NextLink>
-                <NextLink href="/posts" passHref legacyBehavior>
+                {/* <NextLink href="/posts" passHref legacyBehavior>
                   <MenuItem as={Link}>Posts</MenuItem>
-                </NextLink>
-                <NextLink href="https://github.com/tanush-g" passHref legacyBehavior>
+                </NextLink> */}
+                <NextLink href="https://github.com/tanush-g/portfoliowebsite" passHref legacyBehavior>
                   <MenuItem as={Link}>View Source</MenuItem>
                 </NextLink>
               </MenuList>

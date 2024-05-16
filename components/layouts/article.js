@@ -20,7 +20,9 @@ const Layout = ({ children, title }) => (
     <>
       {title && (
         <Head>
-          <title>{title} - Tanush Gautam</title>
+          <title>
+            {Array.isArray(title) ? title.join(" ") : title} - Tanush Gautam
+          </title>
         </Head>
       )}
       {children}
