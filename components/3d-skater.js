@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Box, Spinner } from "@chakra-ui/react"
-import * as THREE from "three"
+import { WebGLRenderer, Vector3, Scene, AmbientLight, DirectionalLight, SRGBColorSpace, OrthographicCamera, ACESFilmicToneMapping } from 'three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { loadGLTFModel } from "../lib/model"
 
@@ -13,15 +13,15 @@ const SkaterBoy = () => {
   const [loading, setLoading] = useState(true)
   const [renderer, setRenderer] = useState(null)
   const [_camera, setCamera] = useState(null)
-  const [target] = useState(new THREE.Vector3(-0.5, 1.2, 0))
+  const [target] = useState(new Vector3(-0.5, 1.2, 0))
   const [initialCameraPosition] = useState(
-    new THREE.Vector3(
+    new Vector3(
       20 * Math.sin(0.2 * Math.PI),
       10,
       20 * Math.cos(0.2 * Math.PI)
     )
   )
-  const [scene] = useState(new THREE.Scene())
+  const [scene] = useState(new Scene())
   const [_controls, setControls] = useState(null)
 
   const handleWindowResize = useCallback(() => {
@@ -40,17 +40,18 @@ const SkaterBoy = () => {
       const scW = container.clientWidth
       const scH = container.clientHeight
 
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+      const renderer = new WebGLRenderer({ antialias: true, alpha: true })
       renderer.setPixelRatio(window.devicePixelRatio)
       renderer.setSize(scW, scH)
-      renderer.outputEncoding = THREE.sRGBEncoding
+      renderer.outputColorSpace = SRGBColorSpace
+      renderer.toneMapping = ACESFilmicToneMapping
       container.appendChild(renderer.domElement)
       setRenderer(renderer)
 
       // 640 -> 240
       // 8 -> 6
       const scale = scH * 0.005 + 4.8
-      const camera = new THREE.OrthographicCamera(
+      const camera = new OrthographicCamera(
         -scale,
         scale,
         scale,
@@ -62,10 +63,10 @@ const SkaterBoy = () => {
       camera.lookAt(target)
       setCamera(camera)
 
-      const ambientLight = new THREE.AmbientLight(0xeeeeee, 1)
+      const ambientLight = new AmbientLight(0xffffff, 1)
       scene.add(ambientLight)
 
-      const directionalLight = new THREE.DirectionalLight(0xffffcc, 1);
+      const directionalLight = new DirectionalLight(0xffffcc, 1);
       directionalLight.position.set(0, 1, 1)
       scene.add(directionalLight);
 
