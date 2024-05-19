@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Box, Spinner } from "@chakra-ui/react"
 import * as THREE from "three"
@@ -33,9 +32,8 @@ const SkaterBoy = () => {
 
       renderer.setSize(scW, scH)
     }
-  }, [renderer])
+  }, [renderer, refContainer])
 
-  //eslint-disable react-hooks/exhaustive-deps
   useEffect(() => {
     const { current: container } = refContainer
     if (container && !renderer) {
@@ -114,6 +112,7 @@ const SkaterBoy = () => {
         container.removeChild(renderer.domElement)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   
