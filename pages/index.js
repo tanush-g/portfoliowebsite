@@ -41,7 +41,7 @@ const Page = () => {
               Tanush Gautam
             </Heading>
             <p>
-              Software Engineer / Full Stack / Machine Learning / Cloud
+              Software Engineering / Full Stack Web Development / Machine Learning / Cloud
               Computing
             </p>
           </Box>
@@ -126,15 +126,12 @@ const Page = () => {
             I ❤️
           </Heading>
           <Paragraph>
-            Art, Music,{" "}
-            <Link href="https://www.youtube.com/watch?v=9bZkp7q19f0">
-              Dancing
+            Art, Travelling, Writing,{" "}
+            <Link href="https://music.apple.com/in/playlist/rock-metal-blues-jazz-country-soul-pop/pl.u-qxyllEls3zoE1YA">
+              Music
             </Link>
-            , Photography, Playing the{" "}
-            <Link href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Black_Marble_Americas.jpg/1024px-Black_Marble_Americas.jpg">
-              Guitar
-            </Link>{" "}
-            and exploring the world of tech.
+            , Photography, Playing the Guitar
+            and exploring the world of Tech.
           </Paragraph>
         </Section>
 

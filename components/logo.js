@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 
 const LogoBox = styled.span`
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   display: inline-flex;
   align-items: center;
   height: 30px;
@@ -18,11 +18,11 @@ const LogoBox = styled.span`
 `
 
 const Logo = () => {
-  const footPrintImg = `/images/footprint${useColorModeValue("", "-dark")}.png`
+  const rabbitImg = `/images/rabbit${useColorModeValue("", "-dark")}.png`
   return (
     <Link href="/" legacyBehavior>
         <LogoBox>
-          <Image src={footPrintImg} alt="logo" width={20} height={20} />
+          <Image src={rabbitImg} alt="logo" width={25} height={25} />
           <Text
             color={useColorModeValue("gray.800", "whiteAlpha.900")}
             fontFamily="M PLUS Rounded 1c"
