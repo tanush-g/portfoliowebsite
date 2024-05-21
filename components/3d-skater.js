@@ -69,14 +69,14 @@ const SkaterBoy = () => {
       camera.lookAt(target)
       setCamera(camera)
 
-      const ambientLight = new AmbientLight(0xffffff, 1)
+      const ambientLight = new AmbientLight(0xffffff, 2)
       scene.add(ambientLight)
 
-      const directionalLight = new DirectionalLight(0xffffcc, 1)
+      const directionalLight = new DirectionalLight(0xffffcc, 2)
       directionalLight.position.set(0, 1, 1)
       scene.add(directionalLight)
 
-      const pointLight = new PointLight(0xffffff, 1)
+      const pointLight = new PointLight(0xffffff, 2)
       pointLight.position.set(0, 10, 10)
       pointLight.castShadow = true // Enable shadow casting
       scene.add(pointLight)
