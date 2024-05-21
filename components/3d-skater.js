@@ -1,6 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Box, Spinner } from "@chakra-ui/react"
-import { WebGLRenderer, Vector3, Scene, AmbientLight, DirectionalLight, SRGBColorSpace, OrthographicCamera, ACESFilmicToneMapping } from 'three';
+import {
+  WebGLRenderer,
+  Vector3,
+  Scene,
+  AmbientLight,
+  DirectionalLight,
+  SRGBColorSpace,
+  OrthographicCamera,
+  ACESFilmicToneMapping,
+  PointLight
+} from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { loadGLTFModel } from "../lib/model"
 
@@ -15,11 +25,7 @@ const SkaterBoy = () => {
   const [_camera, setCamera] = useState(null)
   const [target] = useState(new Vector3(-0.5, 1.2, 0))
   const [initialCameraPosition] = useState(
-    new Vector3(
-      20 * Math.sin(0.2 * Math.PI),
-      10,
-      20 * Math.cos(0.2 * Math.PI)
-    )
+    new Vector3(20 * Math.sin(0.2 * Math.PI), 10, 20 * Math.cos(0.2 * Math.PI))
   )
   const [scene] = useState(new Scene())
   const [_controls, setControls] = useState(null)
@@ -66,9 +72,14 @@ const SkaterBoy = () => {
       const ambientLight = new AmbientLight(0xffffff, 1)
       scene.add(ambientLight)
 
-      const directionalLight = new DirectionalLight(0xffffcc, 1);
+      const directionalLight = new DirectionalLight(0xffffcc, 1)
       directionalLight.position.set(0, 1, 1)
-      scene.add(directionalLight);
+      scene.add(directionalLight)
+
+      const pointLight = new PointLight(0xffffff, 1)
+      pointLight.position.set(0, 10, 10)
+      pointLight.castShadow = true // Enable shadow casting
+      scene.add(pointLight)
 
       const controls = new OrbitControls(camera, renderer.domElement)
       controls.autoRotate = true
@@ -89,7 +100,7 @@ const SkaterBoy = () => {
         req = requestAnimationFrame(animate)
 
         frame = frame <= 100 ? frame + 1 : frame
-        
+
         if (frame <= 100) {
           const p = initialCameraPosition
           const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20
@@ -103,7 +114,7 @@ const SkaterBoy = () => {
         } else {
           controls.update()
         }
-        
+
         renderer.render(scene, camera)
       }
 
@@ -113,10 +124,9 @@ const SkaterBoy = () => {
         container.removeChild(renderer.domElement)
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize, false)
     return () => {
