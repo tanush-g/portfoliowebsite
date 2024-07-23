@@ -116,7 +116,7 @@ const Page = () => {
           </BioSection>
           <BioSection>
             <BioYear>2024</BioYear>
-            Expected to graduate from my undergraduate major in Computer Science and
+            Graduated from my undergraduate major in Computer Science and
             Engineering with a specialization in Machine Learning and Cloud
             Computing.
           </BioSection>

@@ -6,6 +6,7 @@ import Layout from "../components/layouts/article"
 import thumbImageBlend from "../public/images/works/imageblend.png"
 import thumbNeuroFace from "../public/images/works/neuroface.png"
 import thumbOBE from "../public/images/works/obe.png"
+import thumbBrain from "../public/images/works/brain.jpg"
 
 const Works = () => {
   return (
@@ -47,6 +48,18 @@ const Works = () => {
               A web application that implements the OBE grading system, allows
               students to view and professors to assign their grades, class
               schedules, and other academic information.
+            </WorkGridItem>
+          </Section>
+          <Section>
+            <WorkGridItem
+              id="brain"
+              title="Deep Learning based Brain Tumour Classification using CNNs and MR Imaging"
+              thumbnail={thumbBrain}
+            >
+              This project aims to classify brain MRI images into four
+              categories: Glioma, Meningioma, No tumor, and Pituitary tumor. It
+              utilizes TensorFlow to build and train a convolutional neural
+              network (CNN) for the task.
             </WorkGridItem>
           </Section>
         </SimpleGrid>
