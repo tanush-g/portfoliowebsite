@@ -21,15 +21,15 @@ const LinkItem = ({ href, path, children }) => {
   const active = path === href
   const inactiveColor = useColorModeValue("gray.800", "whiteAlpha.900")
   return (
-    <NextLink href={href} legacyBehavior>
-      <Link
-        p={2}
-        bg={active ? "glassTeal" : undefined}
-        color={active ? "#202023" : inactiveColor}
-      >
-        {children}
-      </Link>
-    </NextLink>
+    <Link
+      as={NextLink}
+      href={href}
+      p={2}
+      bg={active ? "glassTeal" : undefined}
+      color={active ? "#202023" : inactiveColor}
+    >
+      {children}
+    </Link>
   )
 }
 
@@ -88,18 +88,18 @@ const Navbar = props => {
                 aria-label="Options"
               />
               <MenuList>
-                <NextLink href="/" passHref legacyBehavior>
-                  <MenuItem as={Link}>About</MenuItem>
-                </NextLink>
-                <NextLink href="/works" passHref legacyBehavior>
-                  <MenuItem as={Link}>Works</MenuItem>
-                </NextLink>
-                {/* <NextLink href="/posts" passHref legacyBehavior>
-                  <MenuItem as={Link}>Posts</MenuItem>
-                </NextLink> */}
-                <NextLink href="https://github.com/tanush-g/portfoliowebsite" passHref legacyBehavior>
-                  <MenuItem as={Link}>View Source</MenuItem>
-                </NextLink>
+                <Link as={NextLink} href="/" w="100%">
+                  <MenuItem>About</MenuItem>
+                </Link>
+                <Link as={NextLink} href="/works" w="100%">
+                  <MenuItem>Works</MenuItem>
+                </Link>
+                {/* <Link as={NextLink} href="/posts" w="100%">
+                  <MenuItem>Posts</MenuItem>
+                </Link> */}
+                <Link as={NextLink} href="https://github.com/tanush-g/portfoliowebsite" w="100%" target="_blank" rel="noopener noreferrer">
+                  <MenuItem>View Source</MenuItem>
+                </Link>
               </MenuList>
             </Menu>
           </Box>

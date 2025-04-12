@@ -1,0 +1,14 @@
+{
+  "name": "Tanush Gautam Portfolio",
+  "short_name": "Tanush",
+  "icons": [
+    {
+      "src": "/images/rabbit.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#202023",
+  "display": "standalone"
+}

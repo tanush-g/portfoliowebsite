@@ -20,7 +20,7 @@ const LogoBox = styled.span`
 const Logo = () => {
   const rabbitImg = `/images/rabbit${useColorModeValue("", "-dark")}.png`
   return (
-    <Link href="/" legacyBehavior>
+    <Link href="/">
         <LogoBox>
           <Image src={rabbitImg} alt="logo" width={25} height={25} />
           <Text

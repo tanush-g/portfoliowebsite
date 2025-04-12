@@ -78,17 +78,18 @@ const Page = () => {
             and creativity. Let&apos;s connect and dive into the world of
             cutting-edge tech together! You can view my work
             {
-              <NextLink href="https://www.github.com/tanush-g" legacyBehavior>
-                <Link> at Github</Link>
-              </NextLink>
+              <Link as={NextLink} href="https://www.github.com/tanush-g" target="_blank" rel="noopener noreferrer"> at Github</Link>
             }
           </Paragraph>
           <Box align="center" my={4}>
-            <NextLink href="/works" legacyBehavior>
-              <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-                My Portfolio
-              </Button>
-            </NextLink>
+            <Button 
+              as={NextLink}
+              href="/works"
+              rightIcon={<ChevronRightIcon />} 
+              colorScheme="teal"
+            >
+              My Portfolio
+            </Button>
           </Box>
         </Section>
         <Section delay={0.2}>
