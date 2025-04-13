@@ -18,6 +18,7 @@ import Section from "../components/section"
 import Paragraph from "../components/paragraph"
 import { BioSection, BioYear } from "../components/bio"
 import { IoLogoInstagram, IoLogoGithub, IoLogoLinkedin } from "react-icons/io5"
+import { SiLeetcode } from "react-icons/si";
 
 const Page = () => {
   return (
@@ -128,6 +129,11 @@ const Page = () => {
             Engineering with a specialization in Machine Learning and Cloud
             Computing.
           </BioSection>
+          <BioSection>
+            <BioYear>2024</BioYear>
+            Currently working as a Data Scientist at{" "}
+            <Link href="https://www.livguard.com" target="_blank" rel="noopener noreferrer">Livguard</Link>.
+          </BioSection>
         </Section>
         <Section delay={0.3}>
           <Heading as="h3" variant="section-title">
@@ -178,6 +184,17 @@ const Page = () => {
                   leftIcon={<Icon as={IoLogoInstagram} />}
                 >
                   @_tanush.g
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="https://leetcode.com/u/tanush-g/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode Profile">
+                <Button
+                  variant="ghost"
+                  colorScheme="teal"
+                  leftIcon={<Icon as={SiLeetcode} />}
+                >
+                  @tanush-g
                 </Button>
               </Link>
             </ListItem>
