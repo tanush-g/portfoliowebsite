@@ -12,10 +12,15 @@ export default class Document extends NextDocument {
           <link rel="icon" type="image/png" sizes="32x32" href="/images/rabbit.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/images/rabbit.png" />
           <link rel="manifest" href="/site.webmanifest" crossOrigin="use-credentials" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="#202023" media="(prefers-color-scheme: dark)" />
+          <meta name="theme-color" content="#f0e7db" media="(prefers-color-scheme: light)" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content="Tanush Gautam" />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="msapplication-TileColor" content="#202023" />
+          <meta name="msapplication-tap-highlight" content="no" />
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

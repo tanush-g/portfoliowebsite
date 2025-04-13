@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react"
-import { Box, Spinner } from "@chakra-ui/react"
+import { Box, Spinner, Text } from "@chakra-ui/react"
 import {
   WebGLRenderer,
   Vector3,
@@ -18,6 +18,17 @@ function easeOutCirc(x) {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 
+const ModelLoader = () => (
+  <Spinner
+    size="xl"
+    position="absolute"
+    left="50%"
+    top="50%"
+    ml="calc(0px - var(--spinner-size) / 2)"
+    mt="calc(0px - var(--spinner-size))"
+  />
+)
+
 const SkaterBoy = () => {
   const refContainer = useRef()
   const [loading, setLoading] = useState(true)
@@ -29,6 +40,7 @@ const SkaterBoy = () => {
   )
   const [scene] = useState(new Scene())
   const [_controls, setControls] = useState(null)
+  const [error, setError] = useState(null)
 
   const handleWindowResize = useCallback(() => {
     const { current: container } = refContainer
@@ -40,22 +52,27 @@ const SkaterBoy = () => {
     }
   }, [renderer, refContainer])
 
+  // Set up the scene
   useEffect(() => {
     const { current: container } = refContainer
     if (container && !renderer) {
       const scW = container.clientWidth
       const scH = container.clientHeight
 
-      const renderer = new WebGLRenderer({ antialias: true, alpha: true })
-      renderer.setPixelRatio(window.devicePixelRatio)
+      // Performance-optimized renderer
+      const renderer = new WebGLRenderer({ 
+        antialias: true, 
+        alpha: true,
+        powerPreference: 'high-performance'
+      })
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio))
       renderer.setSize(scW, scH)
       renderer.outputColorSpace = SRGBColorSpace
       renderer.toneMapping = ACESFilmicToneMapping
       container.appendChild(renderer.domElement)
       setRenderer(renderer)
 
-      // 640 -> 240
-      // 8 -> 6
+      // Responsive camera
       const scale = scH * 0.005 + 4.8
       const camera = new OrthographicCamera(
         -scale,
@@ -69,6 +86,7 @@ const SkaterBoy = () => {
       camera.lookAt(target)
       setCamera(camera)
 
+      // Optimized lighting
       const ambientLight = new AmbientLight(0xffffff, 2)
       scene.add(ambientLight)
 
@@ -78,22 +96,31 @@ const SkaterBoy = () => {
 
       const pointLight = new PointLight(0xffffff, 2)
       pointLight.position.set(0, 10, 10)
-      pointLight.castShadow = true // Enable shadow casting
+      pointLight.castShadow = true
       scene.add(pointLight)
 
+      // Controls
       const controls = new OrbitControls(camera, renderer.domElement)
       controls.autoRotate = true
       controls.target = target
+      controls.autoRotateSpeed = 0.5
+      controls.enableDamping = true
+      controls.dampingFactor = 0.05
       setControls(controls)
-
+      
+      // Load GLTF Model
       loadGLTFModel(scene, "/skater.glb", {
         receiveShadow: false,
         castShadow: false
       }).then(() => {
-        animate()
+        setLoading(false)
+      }).catch(err => {
+        console.error('Failed to load 3D model:', err)
+        setError('Failed to load 3D model')
         setLoading(false)
       })
-
+      
+      // Animation loop
       let req = null
       let frame = 0
       const animate = () => {
@@ -117,23 +144,26 @@ const SkaterBoy = () => {
 
         renderer.render(scene, camera)
       }
-
+      
+      animate()
+      
       return () => {
         cancelAnimationFrame(req)
         renderer.dispose()
-        container.removeChild(renderer.domElement)
+        if (renderer.domElement && container.contains(renderer.domElement)) {
+          container.removeChild(renderer.domElement)
+        }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [initialCameraPosition, scene, target])
 
+  // Handle window resize
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize, false)
     return () => {
       window.removeEventListener("resize", handleWindowResize, false)
     }
-  }),
-    [renderer, handleWindowResize]
+  }, [renderer, handleWindowResize])
 
   return (
     <Box
@@ -145,16 +175,20 @@ const SkaterBoy = () => {
       w={[280, 480, 640]}
       h={[280, 480, 640]}
       position="relative"
+      aria-label="3D skater model"
+      role="img"
     >
-      {loading && (
-        <Spinner
-          size="xl"
+      {loading && <ModelLoader />}
+      {error && (
+        <Text
           position="absolute"
           top="50%"
           left="50%"
-          ml="calc(0px - var(--spinner-size) / 2)"
-          mt="calc(0px - var(--spinner-size))"
-        />
+          transform="translate(-50%, -50%)"
+          color="red.500"
+        >
+          {error}
+        </Text>
       )}
     </Box>
   )
