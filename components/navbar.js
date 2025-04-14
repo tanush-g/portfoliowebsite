@@ -27,6 +27,7 @@ const LinkItem = ({ href, path, children }) => {
       p={2}
       bg={active ? "glassTeal" : undefined}
       color={active ? "#202023" : inactiveColor}
+      aria-current={active ? "page" : undefined}
     >
       {children}
     </Link>
@@ -66,7 +67,9 @@ const Navbar = props => {
           width={{ base: "full", md: "auto" }}
           alignItems="center"
           flexGrow={1}
-          mt={{ base: 4, nmd: 0 }}
+          mt={{ base: 4, md: 0 }}
+          role="navigation"
+          aria-label="Main navigation"
         >
           <LinkItem href="/works" path={path}>
             Works
@@ -80,27 +83,32 @@ const Navbar = props => {
           <ThemeToggleButton />
 
           <Box ml={2} display={{ base: "inline-block", md: "none" }}>
-            <Menu>
-              <MenuButton
-                as={IconButton}
-                icon={<HamburgerIcon />}
-                variant="outline"
-                aria-label="Options"
-              />
-              <MenuList>
-                <Link as={NextLink} href="/" w="100%">
-                  <MenuItem>About</MenuItem>
-                </Link>
-                <Link as={NextLink} href="/works" w="100%">
-                  <MenuItem>Works</MenuItem>
-                </Link>
-                {/* <Link as={NextLink} href="/posts" w="100%">
-                  <MenuItem>Posts</MenuItem>
-                </Link> */}
-                <Link as={NextLink} href="https://github.com/tanush-g/portfoliowebsite" w="100%" target="_blank" rel="noopener noreferrer">
-                  <MenuItem>View Source</MenuItem>
-                </Link>
-              </MenuList>
+            <Menu isLazy id="navbar-menu">
+              {({ isOpen }) => (
+                <>
+                  <MenuButton
+                    as={IconButton}
+                    icon={<HamburgerIcon />}
+                    variant="outline"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded={isOpen}
+                  />
+                  <MenuList aria-label="Navigation menu">
+                    <Link as={NextLink} href="/" w="100%">
+                      <MenuItem as="a">About</MenuItem>
+                    </Link>
+                    <Link as={NextLink} href="/works" w="100%">
+                      <MenuItem as="a">Works</MenuItem>
+                    </Link>
+                    {/* <Link as={NextLink} href="/posts" w="100%">
+                      <MenuItem as="a">Posts</MenuItem>
+                    </Link> */}
+                    <Link as={NextLink} href="https://github.com/tanush-g/portfoliowebsite" w="100%" target="_blank" rel="noopener noreferrer">
+                      <MenuItem as="a">View Source</MenuItem>
+                    </Link>
+                  </MenuList>
+                </>
+              )}
             </Menu>
           </Box>
         </Box>

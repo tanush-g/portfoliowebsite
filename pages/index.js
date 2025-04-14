@@ -1,9 +1,9 @@
 import NextLink from "next/link"
+import Image from "next/image"
 import {
   Container,
   Box,
   Heading,
-  Image,
   Link,
   SimpleGrid,
   useColorModeValue,
@@ -17,8 +17,8 @@ import Layout from "../components/layouts/article"
 import Section from "../components/section"
 import Paragraph from "../components/paragraph"
 import { BioSection, BioYear } from "../components/bio"
-// import { GridItem } from "../components/grid-item"
 import { IoLogoInstagram, IoLogoGithub, IoLogoLinkedin } from "react-icons/io5"
+import { SiLeetcode } from "react-icons/si";
 
 const Page = () => {
   return (
@@ -51,16 +51,26 @@ const Page = () => {
             ml={{ md: 6 }}
             align="center"
           >
-            <Image
+            <Box
               borderColor="whiteAlpha.800"
               borderWidth={2}
               borderStyle="solid"
-              maxWidth="100px"
+              w="100px"
+              h="100px"
               display="inline-block"
               borderRadius="full"
-              src="/images/tanush.jpeg"
-              alt="Profile Image"
-            />
+              overflow="hidden"
+              position="relative"
+            >
+              <Image
+                src="/images/tanush.jpeg"
+                alt="Profile image of Tanush Gautam"
+                fill
+                priority
+                sizes="100px"
+                style={{ objectFit: 'cover' }}
+              />
+            </Box>
           </Box>
         </Box>
 
@@ -76,10 +86,8 @@ const Page = () => {
             Whether building sleek UIs, crafting truly smart models, or
             optimizing cloud infrastructure, I approach every project with zeal
             and creativity. Let&apos;s connect and dive into the world of
-            cutting-edge tech together! You can view my work
-            {
-              <Link as={NextLink} href="https://www.github.com/tanush-g" target="_blank" rel="noopener noreferrer"> at Github</Link>
-            }
+            cutting-edge tech together! You can view my work{" "}
+            <Link as={NextLink} href="https://www.github.com/tanush-g" target="_blank" rel="noopener noreferrer">at Github</Link>
           </Paragraph>
           <Box align="center" my={4}>
             <Button 
@@ -121,6 +129,11 @@ const Page = () => {
             Engineering with a specialization in Machine Learning and Cloud
             Computing.
           </BioSection>
+          <BioSection>
+            <BioYear>2024</BioYear>
+            Currently working as a Data Scientist at{" "}
+            <Link href="https://www.livguard.com" target="_blank" rel="noopener noreferrer">Livguard</Link>.
+          </BioSection>
         </Section>
         <Section delay={0.3}>
           <Heading as="h3" variant="section-title">
@@ -142,7 +155,7 @@ const Page = () => {
           </Heading>
           <List>
             <ListItem>
-              <Link href="https://github.com/tanush-g" target="_blank">
+              <Link href="https://github.com/tanush-g" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
                 <Button
                   variant="ghost"
                   colorScheme="teal"
@@ -153,7 +166,7 @@ const Page = () => {
               </Link>
             </ListItem>
             <ListItem>
-              <Link href="https://www.linkedin.com/in/tanush-g/" target="_blank">
+              <Link href="https://www.linkedin.com/in/tanush-g/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
                 <Button
                   variant="ghost"
                   colorScheme="teal"
@@ -164,13 +177,24 @@ const Page = () => {
               </Link>
             </ListItem>
             <ListItem>
-              <Link href="https://www.instagram.com/_tanush.g/" target="_blank">
+              <Link href="https://www.instagram.com/_tanush.g/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
                 <Button
                   variant="ghost"
                   colorScheme="teal"
                   leftIcon={<Icon as={IoLogoInstagram} />}
                 >
                   @_tanush.g
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="https://leetcode.com/u/tanush-g/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode Profile">
+                <Button
+                  variant="ghost"
+                  colorScheme="teal"
+                  leftIcon={<Icon as={SiLeetcode} />}
+                >
+                  @tanush-g
                 </Button>
               </Link>
             </ListItem>
