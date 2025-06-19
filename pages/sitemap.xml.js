@@ -1,7 +1,7 @@
-const EXTERNAL_DATA_URL = 'https://www.tanush.pro';
+const EXTERNAL_DATA_URL = 'https://www.tanush.pro'
 
 function generateSiteMap(projects) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
+    return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
        <loc>${EXTERNAL_DATA_URL}</loc>
@@ -14,41 +14,41 @@ function generateSiteMap(projects) {
        <priority>0.8</priority>
      </url>
      ${projects
-       .map(({ id }) => {
-         return `
+         .map(({ id }) => {
+             return `
        <url>
            <loc>${`${EXTERNAL_DATA_URL}/works/${id}`}</loc>
            <changefreq>monthly</changefreq>
            <priority>0.7</priority>
        </url>
-     `;
-       })
-       .join('')}
+     `
+         })
+         .join('')}
    </urlset>
- `;
+ `
 }
 
 export async function getServerSideProps({ res }) {
-  // Get all project IDs
-  const projects = [
-    { id: 'brain' },
-    { id: 'imageblend' },
-    { id: 'neuroface' },
-    { id: 'obe' },
-  ];
-  
-  const sitemap = generateSiteMap(projects);
+    // Get all project IDs
+    const projects = [
+        { id: 'brain' },
+        { id: 'imageblend' },
+        { id: 'neuroface' },
+        { id: 'obe' }
+    ]
 
-  res.setHeader('Content-Type', 'text/xml');
-  res.write(sitemap);
-  res.end();
+    const sitemap = generateSiteMap(projects)
 
-  return {
-    props: {},
-  };
+    res.setHeader('Content-Type', 'text/xml')
+    res.write(sitemap)
+    res.end()
+
+    return {
+        props: {}
+    }
 }
 
 // Default export to prevent Next.js errors
 export default function Sitemap() {
-  return null;
+    return null
 }
