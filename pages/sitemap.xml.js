@@ -28,20 +28,23 @@ function generateSiteMap(projects) {
  `
 }
 
-export async function getServerSideProps({ res }) {
+export async function getStaticProps({ res }) {
     // Get all project IDs
     const projects = [
         { id: 'brain' },
         { id: 'imageblend' },
         { id: 'neuroface' },
-        { id: 'obe' }
+        { id: 'obe' },
+        { id: 'privchat' }
     ]
 
     const sitemap = generateSiteMap(projects)
 
-    res.setHeader('Content-Type', 'text/xml')
-    res.write(sitemap)
-    res.end()
+    if (res) {
+        res.setHeader('Content-Type', 'text/xml')
+        res.write(sitemap)
+        res.end()
+    }
 
     return {
         props: {}

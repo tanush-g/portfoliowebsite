@@ -19,7 +19,7 @@ export const Title = ({ children }) => (
     </Box>
 )
 
-export const WorkImage = ({ src, alt }) => (
+export const WorkImage = ({ src, alt, ...props }) => (
     <Box position="relative" w="full" h="auto" aspectRatio={16 / 9} mb={4}>
         <Image
             src={src}
@@ -34,6 +34,7 @@ export const WorkImage = ({ src, alt }) => (
             className="work-image"
             placeholder="empty"
             loading="lazy"
+            {...props}
         />
     </Box>
 )
